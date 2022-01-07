@@ -1,0 +1,129 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Where is your project based?
+{%- endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+      <form action="eligible" method="post" novalidate>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Check your answers</h1>
+        <p class="govuk-hint">Before you create an account, check that what you have told us so far is correct.</p>
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-5',
+          rows: [
+            {
+              key: {
+                text: "Your project is based in"
+              },
+              value: {
+                text: data['location'] | titleCase
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Your organisation is a"
+              },
+              value: {
+                text: data['organisation-type'] | titleCase
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Need permission to run your project?"
+              },
+              value: {
+                text: data['need-permission'] | titleCase
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Your project will run"
+              },
+              value: {
+                text: data['projectStartDate']['day'] + '/' + data['projectStartDate']['month'] + '/' + data['projectStartDate']['year'] + ' to ' + data['projectEndDate']['day'] + '/' + data['projectEndDate']['month'] + '/' + data['projectEndDate']['year']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Organisation can legally receive funding"
+              },
+              value: {
+                html: 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Organisation has a UK bank account"
+              },
+              value: {
+                html: data['hasUKBankAccount'] | titleCase
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukWarningText({
+          text: "By submitting this information you are confirming that, to the best of your knowledge, the details you are providing are correct."
+        }) }}
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+  </div>
+</div>
+{% endblock %}

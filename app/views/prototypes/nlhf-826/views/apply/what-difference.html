@@ -1,0 +1,37 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  What difference will your project make?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            
+            <span class="govuk-caption-xl">About your project</span>
+             <form method="post" action="why-project-matters">
+
+              {{ govukCharacterCount({
+                name: "what-difference",
+                id: "what-difference",
+                maxwords: "500",
+                rows: "10",
+                label: {
+                  text: "What difference will your project make?",
+                  isPageHeading: true,
+                  classes: "govuk-label--xl"
+                },
+                hint: {
+                  text: "Tell us what impact on heritage, people, your community and the environment your project will have."
+                }
+              }) }}
+
+              {{ govukButton({
+                  text: "Save and continue"
+              }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

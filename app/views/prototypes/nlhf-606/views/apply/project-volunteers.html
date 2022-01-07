@@ -1,0 +1,185 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Project volunteers
+{%- endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <span class="govuk-caption-xl">Support for your project</span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Volunteers</h1>
+            <p class="govuk-body-l govuk-!-margin-bottom-9">Tell us what you already have in place to support your project.</p>
+        </div>
+    </div>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+
+            <form action="add-volunteer" method="post">
+                <div class="nlhf-add-item">
+                    <header class="nlhf-add-item__header">
+                        <h2 class="govuk-heading-l nlhf-add-item__header__title">Add a volunteer</h2>
+                    </header>
+                    <div class="nlhf-add-item__body">
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukSelect({
+                                id: "volunteer-type",
+                                name: "volunteer-type",
+                                classes: "govuk-!-width-full",
+                                label: {
+                                    text: "Type"
+                                },
+                                items: [
+                                    {
+                                        value: "Professional",
+                                        text: "Professional"
+                                    },
+                                    {
+                                        value: "Skilled",
+                                        text: "Skilled"
+                                    },
+                                    {
+                                        value: "Volunteer",
+                                        text: "Volunteer"
+                                    }
+                                ]
+                            }) }}                    
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukCharacterCount({
+                                name: "volunteer-description",
+                                id: "volunteer-description",
+                                maxwords: 50,
+                                label: {
+                                    text: "Description"
+                                }
+                            }) }} 
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukInput({
+                                label: {
+                                    text: "Hours"
+                                },
+                                classes: "govuk-!-width-one-half",
+                                id: "volunteer-amount",
+                                name: "volunteer-amount",
+                                autocomplete: "off"
+                            }) }}
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukButton({
+                                text: "Add this volunteer",
+                                preventDoubleClick: true,
+                                classes: "govuk-button--secondary"
+                            }) }}
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.nlhf-add-item -->
+            </form>
+            <!-- /add-cost form -->
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+            
+            {% set helpHTML %}
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-1">What do we mean by volunteers?</h3>
+                <p class="govuk-body">Volunteers are people who give up their time for free to help deliver your project.</p>
+
+                <h3 class="govuk-heading-s">What are the types of volunteer?</h3>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li class="govuk-!-margin-bottom-3">
+                        <span class="govuk-!-font-weight-bold">Professional</span><br>
+                        Such as accountancy or teaching.
+                    </li>
+                    <li class="govuk-!-margin-bottom-3">
+                        <span class="govuk-!-font-weight-bold">Skilled</span><br>
+                        Such as administrative work, carpentry or leading a guided walk.
+                    </li>
+                    <li class="govuk-!-margin-bottom-3">
+                        <span class="govuk-!-font-weight-bold">Volunteer</span><br>
+                        Such as clearing a site or working as a steward at an event.
+                    </li>
+                </ul>
+            {% endset %}
+
+            <div class="nlhf-highlight-content nlhf-highlight-content--help">
+                {{ helpHTML | safe }}
+            </div>
+        
+            <section class="nlhf-summary">
+
+                <header class="nlhf-summary__header">
+                    <h2 class="govuk-heading-m">Your project volunteers</h2>
+                </header>
+
+                <div class="nlhf-summary__body">
+
+                    {% if data.project.volunteers.length > 0 %}
+
+                        {% for volunteer in data.project.volunteers %}
+
+                            <div class="nlhf-data-row nlhf-data-row--volunteers">
+                                <div class="nlhf-data-row__group nlhf-data-row__group--a">
+                                    <div class="nlhf-data-row__secondary">
+                                        <p class="govuk-body-s govuk-!-margin-bottom-2">{{ volunteer.description }}</p>
+                                    </div>
+                                    <div class="nlhf-data-row__primary">
+                                        <p class="govuk-hint govuk-!-font-size-14">{{ volunteer.type }}</p>
+                                    </div>
+                                </div>
+                                <div class="nlhf-data-row__group nlhf-data-row__group--b">
+                                    <div class="nlhf-data-row__teritary">
+                                    <h3 class="govuk-heading-s nlhf-data-row__heading">{{ volunteer.amount }} Hours</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.nlhf-cost-row -->
+
+                        {% endfor %}
+
+                    {% else %}
+                        <h3 class="govuk-heading-m">You have not added any volunteers</h3>
+                    {% endif %}
+
+                    <div class="nlhf-summary__total">
+                        <h3 class="nlhf-summary__total__title">
+                            <span class="nlhf-summary__total__title-text">Total</span>
+                            <span class="nlhf-summary__total__title-val">{{ data.project.totalVolunteers | d('0') }} Hours</span>
+                        </h3>
+                    </div>
+                </div>
+                <!-- /.nlhf-summary__body -->
+
+            </section>
+            <!-- /.nlhf-summary-container -->
+
+        </div>
+    </div>
+
+    <hr class="govuk-section-break--l govuk-section-break--visible">
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+                <form action="process-volunteers">
+
+                    <p class="govuk-body">If you have finished adding volunteers</p>
+                    
+                    {{ govukButton({
+                        text: "Save and continue",
+                        preventDoubleClick: true
+                    }) }}
+                </form>
+
+        </div>
+    </div>
+
+{% endblock %}

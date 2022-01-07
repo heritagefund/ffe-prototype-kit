@@ -1,0 +1,151 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Project non-cash contributors
+{%- endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <span class="govuk-caption-xl">Support for your project</span>
+            <h1 class="govuk-heading-xl">Non-cash contributors</h1>
+        </div>
+    </div>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+
+            <form action="add-non-cash-contribution" method="post">
+                <div class="nlhf-add-item">
+                    <header class="nlhf-add-item__header">
+                        <h2 class="govuk-heading-l nlhf-add-item__header__title">Add a non-cash contribution</h2>
+                    </header>
+                    <div class="nlhf-add-item__body">
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukCharacterCount({
+                                name: "nc-cont-description",
+                                id: "nc-cont-description",
+                                maxwords: 50,
+                                label: {
+                                    text: "Description"
+                                }
+                            }) }} 
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukInput({
+                                label: {
+                                    text: "Estimated value"
+                                },
+                                hint: {
+                                    text: "An estimate of how much this would have cost if your project had to pay for it",
+                                    classes: "govuk-!-font-size-14"
+                                },
+                                id: "nc-cont-amount",
+                                name: "nc-cont-amount",
+                                autocomplete: "off"
+                            }) }}
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukButton({
+                                text: "Add non-cash contribution",
+                                preventDoubleClick: true,
+                                classes: "govuk-button--secondary"
+                            }) }}
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.nlhf-add-item -->
+            </form>
+            <!-- /add-cost form -->
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% set helpHTML %}
+                <h3 class="govuk-heading-m govuk-!-margin-bottom-3">What do we mean by non-cash contributions?</h3>
+                
+                <p class="govuk-body">
+                    Non-cash contributions are things you need for your project that you do not have to pay for.
+                </p>
+                <p class="govuk-body">
+                    For example - the use of a room in a local business, or materials being donated by a local firm.
+                </p>
+
+            {% endset %}
+
+            <div class="nlhf-highlight-content nlhf-highlight-content--help">
+                {{ helpHTML | safe }}
+            </div>
+        
+            <section class="nlhf-summary nlhf-summary--non-cash">
+
+                <header class="nlhf-summary__header">
+                    <h2 class="govuk-heading-m">Your non-cash contributions</h2>
+                </header>
+
+                <div class="nlhf-summary__body">
+
+                    {% if data.project.contributions.noncash.length > 0 %}
+
+                        {% for item in data.project.contributions.noncash %}
+
+                            <div class="nlhf-data-row">
+                                <div class="nlhf-data-row__group nlhf-data-row__group--a">
+                                    <div class="nlhf-data-row__primary">
+                                        <p class="govuk-body-s">{{ item.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="nlhf-data-row__group nlhf-data-row__group--b">
+                                    <div class="nlhf-data-row__teritary">
+                                    <h2 class="govuk-heading-s nlhf-data-row__heading">&pound;{{ item.amount }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.nlhf-cost-row -->
+
+                        {% endfor %}
+
+                        <div class="nlhf-summary__total">
+                            <h3 class="nlhf-summary__total__title">
+                                <span class="nlhf-summary__total__title-text">Estimate contributions value </span>
+                                <span class="nlhf-summary__total__title-val">&pound;{{ data.project.totalNoncashContributions | d('0') }}</span>
+                            </h3>
+                        </div>
+
+                    {% else %}
+                        <h3 class="govuk-heading-m govuk-!-margin-bottom-0">You have not added any non-cash contributions</h3>
+                    {% endif %}
+
+                </div>
+                <!-- /.nlhf-summary__body -->
+
+            </section>
+            <!-- /.nlhf-summary-container -->
+            
+        </div>
+    </div>
+
+    <hr class="govuk-section-break--l govuk-section-break--visible">
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="process-non-cash" method="post">
+
+            <p class="govuk-body">If you have finished adding all your non-cash contributions</p>
+                {{ govukButton({
+                    text: "Save and continue",
+                    preventDoubleClick: true
+                }) }}
+            </div>
+
+            </form>
+
+    </div>
+
+{% endblock %}

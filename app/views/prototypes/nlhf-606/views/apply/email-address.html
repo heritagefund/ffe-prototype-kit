@@ -1,0 +1,40 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Create account
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-xl govuk-!-margin-bottom-5">Check if you are eligible for funding</span>
+
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">What is your email address?</h1>
+
+            <p class="govuk-body">We will only contact you about what you tell us in this form.</p>
+
+             <form method="post" action="where-based">
+
+                {{ govukInput({
+                    label: {
+                        text: "Email address"
+                    },
+                    classes: "govuk-!-width-three-quarters",
+                    id: "email",
+                    name: "email",
+                    value: data["email"]
+                }) }}
+                
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+    <!-- TODO need email from previous screen !-->
+
+    
+{% endblock %}

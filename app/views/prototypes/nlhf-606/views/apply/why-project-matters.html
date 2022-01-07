@@ -1,0 +1,38 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Why does your project matter to you and your community? 
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-xl">About your project</span>
+
+             <form method="post" action="organisation-best-placed">
+
+              {{ govukCharacterCount({
+                name: "why-project-matters",
+                id: "why-project-matters",
+                rows: "10",
+                maxwords: "500",
+                label: {
+                  text: "Why does your project matter to you and your community?",
+                  isPageHeading: true,
+                  classes: "govuk-label--xl"
+                },
+                hint: {
+                  text:"This helps us to understand how engaged your community is with your project and why it is important to you and to them." 
+                }
+              }) }}
+
+              {{ govukButton({
+                  text: "Save and continue"
+              }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

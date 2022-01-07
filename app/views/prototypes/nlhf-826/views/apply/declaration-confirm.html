@@ -1,0 +1,40 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Declaration confirm
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+                Confirm declaration
+            </h1>
+
+            <p class="govuk-body-l  govuk-!-margin-bottom-7">Now that you're happy with your application, you are ready to apply for funding.</p>
+
+            {{ govukCheckboxes({
+            idPrefix: "confirm-declaration",
+            name: "confirm-declaration",
+            classes: "govuk-!-margin-bottom-7",
+            items: [
+                {
+                value: "true",
+                text: "I have read and agreed with the <a href='declaration'>declaration</a>" | safe
+                }
+            ]
+            }) }}
+
+             <form method="post" action="application-submitted">
+
+                {{ govukButton({
+                text: "Submit application",
+                isStartButton: true
+                }) }}
+
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

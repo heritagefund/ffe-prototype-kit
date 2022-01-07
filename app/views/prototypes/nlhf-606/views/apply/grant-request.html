@@ -1,0 +1,64 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Grant request
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-l">About your project</span>
+                Your grant request
+            </h1>
+
+            {{ govukPanel({
+                titleText: ("&pound;" + data.project.grantAmount) | safe,
+                html: "for " + (data['project-title'] | d('your project')),
+                classes: "govuk-!-margin-bottom-7"
+            }) }}
+
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-2">How did we calculate this?</h2>
+
+            <div class="nlhf-grant-summary govuk-!-margin-bottom-7">
+                <div class="nlhf-grant-summary__item">
+                    <div class="nlhf-grant-summary__description">
+                        <h2 class="govuk-heading-s govuk-!-margin-bottom-3">Your total project costs</h2>
+                        <p class="govuk-body">This is what you told us the total amount of money your whole project will cost</p>
+                    </div>
+                    <div class="nlhf-grant-summary__amount">
+                        <p>&pound;{{ data.project.totalCosts | d('0') }}</p>
+                    </div>
+                </div>
+                <div class="nlhf-grant-summary__item">
+                    <div class="nlhf-grant-summary__description">
+                        <h2 class="govuk-heading-s govuk-!-margin-bottom-3">Your cash contributions</h2>
+                        <p class="govuk-body">This is the amount of money you told us you will receive for your project that does not include your grant request</p>
+                    </div>
+                    <div class="nlhf-grant-summary__amount">
+                        <p>&pound;{{ data.project.totalCashContributions | d('0') }}</p>
+                    </div>
+                </div>
+                <div class="nlhf-grant-summary__item nlhf-grant-summary__item--calc">
+                    <p class="govuk-body govuk-!-margin-bottom-0">We calculated what we think you need automatically by subtracting cash contributions you are getting from the total of all the project costs you entered:</p>
+                    <p class="govuk-heading-m govuk-!-margin-bottom-0" style="text-align: center;">&pound;{{ data.project.totalCosts | d('0') }} - &pound;{{ data.project.totalCashContributions | d('0') }} = &pound;{{ data.project.grantAmount }}</p>
+                </div>
+
+            </div>
+
+            {# {{ govukInsetText({
+            text: "If the project costs, or cash contributions are not correct, don't worry, you can go back and change your answers before you submit your application."
+            }) }}             #}
+
+             <form method="post" action="declaration-confirm">
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

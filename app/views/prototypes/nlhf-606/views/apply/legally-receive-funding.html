@@ -1,0 +1,49 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Where are you based?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post">
+
+                <span class="govuk-caption-xl govuk-!-margin-bottom-0">Check if you are eligible for funding</span>
+
+                {{ govukRadios({
+                idPrefix: "legallyReceiveFunding",
+                name: "legallyReceiveFunding",
+                fieldset: {
+                    legend: {
+                        text: "Can you legally receive funding?",
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-5"
+                    }
+                },
+                hint: {
+                    text: "This helps us check that your constitution allows you to accept funds.",
+                    classes: "govuk-!-margin-bottom-5"
+                },
+                items: [
+                    {
+                        value: "yes",
+                        text: "Yes"
+                    },
+                    {
+                        value: "no",
+                        text: "No"
+                    }
+                ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

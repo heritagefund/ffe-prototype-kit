@@ -1,0 +1,77 @@
+{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
+{%- set assetPath = '/govuk/assets' -%}
+{%- set bodyClasses = bodyClasses | d('') + 'prototype-' + prototypeVersion | d('') -%}
+{%- set htmlClasses = htmlClasses | d('') + 'nlhf-template' -%}
+
+{% extends "layout.html" %}
+
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/back-link/macro.njk"        import govukBackLink %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/character-count/macro.njk"  import govukCharacterCount %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/date-input/macro.njk"       import govukDateInput %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/error-message/macro.njk"    import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk"    import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/file-upload/macro.njk"      import govukFileUpload %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk"       import govukInsetText %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/phase-banner/macro.njk"     import govukPhaseBanner %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/skip-link/macro.njk"        import govukSkipLink %}
+{% from "govuk/components/summary-list/macro.njk"     import govukSummaryList %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
+
+{% block body_classes %}{{ bodyClasses }}{% endblock %}
+
+{% block headIcons %}
+  <link rel="shortcut icon" href="{{ asset_path }}images/unbranded.ico?0.18.3" type="image/x-icon"/>
+{% endblock %}
+
+{% block head %}
+  {# should the version of the prototype use it's own CSS file? #}
+  {% if useVersionCSS == 'true' %}
+    {{ ('Styles are being generated from: ' + prototypeVersion + '.scss file in /app/assets/sass/versions/') | log if debugMode }}
+    <link href="/public/stylesheets/{{ prototypeVersion }}.css" media="all" rel="stylesheet" type="text/css">
+  {% else %}
+    <link href="/public/stylesheets/unbranded.css" media="all" rel="stylesheet" type="text/css">
+  {% endif %}
+{% endblock %}
+
+{% block header %}
+  <div class="nlhf-header-global">
+    <div class="govuk-width-container">
+        <div class="nlhf-header-global__logo">
+            <a href="/"><img src="/public/images/logo.svg" alt="National Lottery Heritage Fund"></a>
+        </div>
+    </div>
+  </div>
+  <!-- /.govuk-width-container -->
+{% endblock %}
+
+{% block footer %}
+<footer class="govuk-footer nlhf-footer" role="contentinfo">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        <div class="govuk-footer__meta-custom">
+          © Trustees of the National Heritage Memorial Fund
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+{% block bodyEnd %}
+  {% include "includes/scripts.html" %}
+{% endblock %}

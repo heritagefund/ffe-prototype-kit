@@ -1,0 +1,31 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  You are eligible to apply
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post" action="create-account">
+
+                {{ govukPanel({
+                    titleText: "Your project fits<br>our funding criteria" | safe
+                }) }}
+
+                {# <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">You are eligble to apply</h1> #}
+
+                <p class="govuk-body">Based on what you have told us, your project fits our funding criteria.</p>
+
+                <p class="govuk-body govuk-!-margin-bottom-6">The next step is to register with us by creating an account.</p>
+
+                {{ govukButton({
+                    text: "Create an account"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

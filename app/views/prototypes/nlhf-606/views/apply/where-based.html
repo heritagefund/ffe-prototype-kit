@@ -1,0 +1,49 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Where are you based?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post">
+
+                <span class="govuk-caption-xl govuk-!-margin-bottom-3">Check if you are eligible for funding</span>
+
+                {{ govukRadios({
+                idPrefix: "where-are-you-based",
+                name: "location",
+                fieldset: {
+                    legend: {
+                        text: "Where are you based?",
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-5"
+                    }
+                },
+                hint: {
+                    text: "To make sure you are eligible for our funding, we need to check your project against our criteria.",
+                    classes: "govuk-!-margin-bottom-5"
+                },
+                items: [
+                    {
+                        value: "united-kingdom",
+                        text: "United Kingdom"
+                    },
+                    {
+                        value: "outside-the-united-kingdom",
+                        text: "Outside the United Kingdom"
+                    }
+                ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

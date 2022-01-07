@@ -1,0 +1,72 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+ Do you need permission?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post">
+
+                <span class="govuk-caption-xl govuk-!-margin-bottom-0">About your project</span>
+                <h1 class="govuk-heading-l govuk-!-margin-bottom-5">Do you need permission from anyone else to do your project?</h1>
+
+                {{ govukRadios({
+                idPrefix: "need-permission",
+                name: "need-permission",
+                items: [
+                    {
+                        value: "yes",
+                        text: "Yes"
+                    },
+                    {
+                        value: "no",
+                        text: "No"
+                    },
+                    {
+                        value: "unknown",
+                        text: "Not sure"
+                    }
+                ]
+                }) }}
+
+                {% set detailsHTML %}
+                    <p class="govuk-body">
+                        You might need permission from somebody else to do your project, for example you may need:
+                    </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>
+                            agreement from the owner of a heritage asset
+                        </li>
+                        <li>
+                            access rights from a landowner
+                        </li>
+                        <li>
+                            planning permission from the council
+                        </li>
+                    </ul>
+                    <p class="govuk-body">
+                        It could also include consent to record audio or take photographs of individuals.
+                    </p>
+                    <p class="govuk-body">
+                        If you don't know if you need permission, answer by choosing the 'Not sure' option.
+                    </p>
+                {% endset %}
+
+                {{ govukDetails({
+                    summaryText: "Examples of what might need permission",
+                    html: detailsHTML
+                    })
+                }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

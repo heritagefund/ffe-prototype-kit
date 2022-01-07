@@ -1,0 +1,38 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Describe your idea
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+
+            <span class="govuk-caption-xl">About your project</span>
+             <form method="post" action="what-difference">
+
+              {{ govukCharacterCount({
+                name: "describe-your-idea",
+                id: "describe-your-idea",
+                maxwords: "500",
+                rows: "10",
+                label: {
+                  text: "Describe your idea",
+                  isPageHeading: true,
+                  classes: "govuk-label--xl"
+                },
+                hint: {
+                  text: "This helps us to understand what your project is all about. Explain the ambitions of your project, how it relates to heritage and what you will spend the money on."
+                }
+              }) }}
+
+              {{ govukButton({
+                  text: "Save and continue"
+              }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

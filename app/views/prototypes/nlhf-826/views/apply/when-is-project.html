@@ -1,0 +1,82 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+ When is your project?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post">
+
+                <span class="govuk-caption-xl govuk-!-margin-bottom-0">About your project</span>
+
+                <h1 class="govuk-heading-xl">When will your project happen?</h1>
+
+                {{ govukDateInput({
+                id: "startDate",
+                fieldset: {
+                    legend: {
+                        text: "Project start date",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                },
+                items: [
+                    {
+                        label: "Day",
+                        classes: "govuk-input--width-2",
+                        name: "projectStartDate[day]"
+                    },
+                    {
+                        label: "Month",
+                        classes: "govuk-input--width-2",
+                        name: "projectStartDate[month]"
+                    },
+                    {
+                        label: "Year",
+                        classes: "govuk-input--width-4",
+                        name: "projectStartDate[year]"
+                    }
+                ]
+                }) }}
+
+                {{ govukDateInput({
+                id: "finish-date",
+                classes: "govuk-!-margin-bottom-5",
+                fieldset: {
+                    legend: {
+                    text: "Project end date",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--m"
+                }
+                },
+                items: [
+                    {
+                        label: "day",
+                        classes: "govuk-input--width-2",
+                        name: "projectEndDate[day]"
+                    },
+                    {
+                        label: "month",
+                        classes: "govuk-input--width-2",
+                        name: "projectEndDate[month]"
+                    },
+                    {
+                        label: "year",
+                        classes: "govuk-input--width-4",
+                        name: "projectEndDate[year]"
+                    }
+                ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

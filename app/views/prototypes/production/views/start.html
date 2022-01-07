@@ -1,0 +1,45 @@
+{% set page = {
+  content_header: false
+} %}
+
+{% extends "./layouts/two_thirds.html" %}
+
+{% block content_primary %}
+
+  <h1 class="govuk-heading-l">Sign in</h1>
+
+  {{
+    govukInput({
+      label: {
+        text: "Username"
+      },
+      id: "username",
+      name: "username",
+      classes: "govuk-input--width-20"
+    })
+  }}
+
+  {{
+    govukInput({
+      label: {
+        text: "Password"
+      },
+      id: "password",
+      name: "password",
+      classes: "govuk-input--width-20"
+    })
+  }}
+
+  {{
+    govukButton({
+      text: "Sign in"
+    })
+  }}
+
+  <hr class="govuk-section-break govuk-section-break--m">
+
+  <h3 class="govuk-heading-m">Problems signing in?</h3>
+
+  <p class="govuk-body"><a href="#">Forgot your password</a></p>
+
+{% endblock %}

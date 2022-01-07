@@ -1,0 +1,18 @@
+// ----------------------------------------------------------
+// base nlhf design tokens
+// ----------------------------------------------------------
+$nlhf-colour--blue: #005565 !default;
+$nlhf-colour--light-grey: #F3F6F7 !default;
+$nlhf-colour--mid-grey: darken(#F3F6F7,15) !default;
+
+// doing this overrides the GOVUK colour where it is used because declared as a default;
+$govuk-brand-colour: $nlhf-colour--blue;
+
+// ----------------------------------------------------------
+// common properties
+// ----------------------------------------------------------
+$nlhf-page--background: $nlhf-colour--light-grey !default;
+
+$nlhf-border--colour: $nlhf-colour--mid-grey !default;
+$nlhf-border--width: 1px !default;
+$nlhf-border--style: solid !default;

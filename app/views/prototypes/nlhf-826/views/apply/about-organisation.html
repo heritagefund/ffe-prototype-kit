@@ -1,0 +1,53 @@
+{% extends "../layouts/layout_question.html" %}
+
+                  {% from "govuk/components/input/macro.njk" import govukInput %}
+{% block pageTitle -%}
+  About your organisation
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post" action="signatory">
+
+              <h1 class="govuk-heading-xl">
+                  <span class="govuk-caption-l">Create an account</span>
+                  About your organisation
+              </h1>
+
+                {{ govukInput({
+                  label: {
+                    classes: "govuk-!-font-size-24 govuk-!-font-weight-bold",
+                    text: "What is your company number?"
+                  },
+                hint: {
+                    html: "If you have a company number, related to this project, it would be helpful if you provide it.
+                If you need help, please read <a href='#'>How to find my company number</a>"
+                  },
+                  id: "company-number",
+                  name: "company-number"
+                }) }}
+
+                {{ govukInput({
+                  label: {
+                    classes: "govuk-!-font-size-24 govuk-!-font-weight-bold",
+                    text: "What is your charity number"
+                  },
+                hint: {
+                    html: "If you have a charity number, related to this project, it would be helpful if you provide it. 
+                If you need help, please read <a href='#'>How to find my charity number</a>"
+                  },
+                  id: "charity-number",
+                  name: "charity-number"
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

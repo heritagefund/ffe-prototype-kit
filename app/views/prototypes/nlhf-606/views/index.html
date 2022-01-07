@@ -1,0 +1,76 @@
+{% extends "./layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Start – {{ serviceName }}
+{%- endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Apply for a grant</h1>
+
+      <p class="govuk-body">Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Apply for funding from the National Lottery Heritage Fund for your heritage project</li>
+      </ul>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/nlhf-606/apply/email-address",
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">We will ask</h2>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          Questions to find out if your project fits our funding criteria
+        </li>
+        <li>
+          What your project will do
+        </li>
+        <li>
+          Which of our outcomes your project will achieve
+        </li>
+        <li>
+          How much your project will cost
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p class="govuk-body">Read about <a href="https://www.heritagefund.org.uk/funding/outcomes">what we fund</a> in more detail.</p>
+
+      <p class="govuk-body">Learn <a href="https://www.heritagefund.org.uk/funding/outcomes">what we mean by project outcomes</a>. Outcomes are what we will assess your application against when making a funding decision.</p>
+
+      <p>
+        You might find it helpful to refer to our <a href="https://www.heritagefund.org.uk/publications/application-guidance-ps3000-ps10000">Application Guidance</a> when answering the questions in this form.
+      </p>
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Get help elsewhere
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a class="govuk-link" href="#">
+                <a href="https://www.heritagefund.org.uk/funding">Funding information</a>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}

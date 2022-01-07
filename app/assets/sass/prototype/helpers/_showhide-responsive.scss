@@ -1,0 +1,18 @@
+// for each defined breakpoint loop over and create
+@each $breakpoint in map-keys($govuk-breakpoints) {
+
+    // a class impacting viewports smaller than the break point 
+    @include govuk-media-query($until: $breakpoint) {
+        .nlhf-visually-hidden-until-#{$breakpoint} {
+            @include govuk-visually-hidden;
+        }
+    }
+
+    // a class impacting viewports bigger than the break point 
+    @include govuk-media-query($from: $breakpoint) {
+        .nlhf-visually-hidden-from-#{$breakpoint} {
+            @include govuk-visually-hidden;
+        }
+    }
+
+}

@@ -1,0 +1,37 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Why are you and your organisation best placed to deliver this project?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            
+            <span class="govuk-caption-xl">About your project</span>
+             <form method="post" action="make-heritage-available">
+
+              {{ govukCharacterCount({
+                name: "organisation-best-placed",
+                id: "organisation-best-placed",
+                rows: "10",
+                maxwords: "500",
+                label: {
+                  text: "Why are you and your organisation best placed to deliver this project?",
+                  isPageHeading: true,
+                  classes: "govuk-label--xl"
+                },
+                hint: {
+                  text:"Tell us why specifically your organisation should run this project. Demonstrate that you have made contact with relevant projects and organisations in your area." 
+                }
+              }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

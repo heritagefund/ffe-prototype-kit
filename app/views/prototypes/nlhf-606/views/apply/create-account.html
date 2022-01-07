@@ -1,0 +1,85 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Create account
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-l">Create an account</span>
+                About you
+            </h1>
+
+             <form method="post" action="process-create-account">
+
+                {{ govukInput({
+                    label: {
+                        classes: "govuk-!-font-size-24ddd",
+                        text: "Full name"
+                    },
+                    classes: "govuk-!-width-three-quarters",
+                    id: "full-name",
+                    name: "full-name"
+                }) }}
+
+                {{ govukInput({
+                    label: {
+                        classes: "govuk-!-font-size-24ddd",
+                        text: "Telephone number"
+                    },
+                    inputMode: "numeric",
+                    classes: "govuk-!-width-three-quarters",
+                    id: "phone",
+                    name: "phone"
+                }) }}
+
+                <p class="govuk-body">
+                    <span>Do you want to create your account with the email address:</span>
+                    <span><span class="nlhf-highlight-text govuk-!-font-weight-bold">{{ data['email'] | d('mail@domain.com') }}</span></span>
+                </p>
+
+                {% set emailHtml %}
+                {{ govukInput({
+                    id: "new-account-email",
+                    name: "new-account-email",
+                    type: "email",
+                    classes: "govuk-!-width-full",
+                    label: {
+                        text: "Enter a different email address"
+                    },
+                    attributes: {
+                        spellcheck: "false"
+                    }
+                    }) }}
+                {% endset -%}
+
+                {{ govukRadios({
+                    idPrefix: "account-email",
+                    name: "account-email",
+                    items: [
+                        {
+                            value: data['email'],
+                            text: "Yes"
+                        },
+                        {
+                            value: "no",
+                            text: "No",
+                            conditional: {
+                                html: emailHtml
+                            }
+                        }
+                    ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "../layouts/layout_question.html" %}
+
+                  {% from "govuk/components/input/macro.njk" import govukInput %}
+{% block pageTitle -%}
+  About your organisation
+{%- endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Account created",
+        html: "You can now start your application"
+      }) }}
+
+      <p class="govuk-body">Before you submit your application you will need to upload:</p>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Annual accounts for your organisation, audited by a management accountant</li>
+        
+      <p class="govuk-body">If annual accounts are not available because your organisation is new:</p>
+        <li>3 bank statements for your organisation</li>
+      </ul>
+
+        <p class="govuk-body">We will accept 1 bank statement for your organisation, if your organisation is so new that only 1 statement is available.</p>
+      
+      <form method="post" action="project-title">
+        {{ govukButton({
+          text: "Start application"
+        }) }}
+      </form>
+
+{% endblock %}
+
+      
+      

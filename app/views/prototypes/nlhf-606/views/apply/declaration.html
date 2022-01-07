@@ -1,0 +1,117 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Declaration
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                Declaration
+            </h1>
+
+
+<h2 class="govuk-heading-m">a) Terms of Grant</h2>
+
+<p class="govuk-body">
+    You must read the standard terms of grant for this programme on our website.
+</p>
+<p class="govuk-body">
+    By completing this Declaration, you are confirming that your organisation accepts these terms. For partnership projects, all partners must confirm that they accept the standard terms of grant by adding a contact at the end of the declaration.
+</p>
+
+ 
+
+<h2 class="govuk-heading-m">b) Freedom of Information and Data Protection</h2> 
+
+<p class="govuk-body">
+    We are committed to being as open as possible. This includes being clear about how we assess and make decisions on our grants and how we will use your application form and other documents you give us. As a public organisation we have to follow all data protection laws and regulations, to include European Parliament directives and regulations that are applicable and in force from time to time (the 'Data Protection legislation'). As defined by the Data Protection legislation the Trustees of the National Heritage Memorial Fund (who administer the National Lottery Heritage Fund) is a data controller.
+</p>
+
+<p class="govuk-body">
+    As part of the application process we will collect your name and position at the organisation you represent. We may share this information with one of the consultants on our Register of Support Services if they are appointed to help support you on your project. We do not transfer your data to any third parties based outside of the EU. Our Privacy Policy contains additional information including contact information for our Data Protection Officer. It can be found on the National Lottery Heritage Fund website.
+</p>
+
+<p class="govuk-body">
+    When you complete the Declaration at the end of the application form, you are confirming that you understand our legal responsibilities under data protection legislation and the Freedom of Information Act 2000 and have no objection to us releasing the The Heritage’, Your Project and Project Outcomes sections of the application form to anyone who asks to see them once your application has completed the assessment process. If there is any information in these sections of the form that you don't want made publicly available, please explain your reasons below:
+</p>
+
+{{ govukTextarea({
+  name: "privacy-reasons",
+  id: "privacy-reasons"
+}) }}
+
+<p class="govuk-body">
+    We will take these into account when we respond to any request for access to those sections. We may also be asked to release other information that you provide to us. We will respond to these requests after taking account of your rights and expectations under Data Protection legislation. In those cases, we will always consult you first. We will not be responsible for any loss or damage you suffer as a result of our meeting these responsibilities.
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+
+    <li>
+        To decide whether to give you a grant.
+    </li>
+    <li>
+        To provide copies to other individuals or organisations who are helping us to assess, monitor and evaluate grants.
+    </li>
+    <li>
+        To share information with organisations and individuals working with us with a legitimate interest in Lottery applications and grants or specific funding programmes.
+    </li>
+    <li>
+        To hold in a database and use for statistical purposes.
+    </li>
+    <li>
+        If we offer you a grant, we will publish information about you relating to the activity we have funded, including the amount of the grant and the activity it was for. This information may appear in our press releases, in our print and online publications, and in the publications or websites of relevant Government departments and any partner organisations who have funded the activity with us.
+    </li>
+    <li>
+        If we offer you a grant, you will support our work to demonstrate the value of heritage by contributing (when asked) to publicity activities during the period we provide funding for and participating in activities to share learning, for which we may put other grantees in contact with you.
+    </li>
+
+</ul>
+
+<p class="govuk-body">
+    We may contact you from time to time to keep you informed about the work of the National Lottery Heritage Fund.
+</p>
+
+{{ govukCheckboxes({
+  idPrefix: "keep-informed",
+  name: "keep-informed",
+  classes: "govuk-checkboxes--small",
+  items: [
+    {
+      value: "agree",
+      text: "Tick this box if you wish to be kept informed of our work."
+    }
+  ]
+}) }}
+
+<ul class="govuk-list govuk-list--bullet">
+    <li>
+        I confirm that the organisation named on this application has given me the authority to complete this application on its behalf.
+    </li>
+    <li>
+        I confirm that the activity in the application falls within the purposes and legal powers of the organisation.
+    </li>
+    <li>
+        I confirm that the organisation has the power to accept and pay back the grant.
+    </li>
+    <li>
+        I confirm that if the organisation receives a grant, we will keep to the standard terms of grant, and any further terms or conditions as set out in the grant notification letter, or in any contract prepared specifically for the project.
+    </li>
+    <li>
+        I confirm that, as far as I know, the information in this application is true and correct.
+    </li>
+</ul>
+
+             <form method="post" action="declaration-confirm">
+
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

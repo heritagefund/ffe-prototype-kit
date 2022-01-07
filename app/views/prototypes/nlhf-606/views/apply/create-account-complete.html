@@ -1,0 +1,30 @@
+{% extends "../layouts/layout_question.html" %}
+
+                  {% from "govuk/components/input/macro.njk" import govukInput %}
+{% block pageTitle -%}
+  About your organisation
+{%- endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Account created",
+        html: "You can now start your application"
+      }) }}
+
+      <p class="govuk-body">Before you submit your application you will need to upload:</p>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Your organisation's accounts</li>
+        <li>Demographic information</li>
+      </ul>
+
+      <form method="post" action="project-title">
+        {{ govukButton({
+          text: "Start application"
+        }) }}
+      </form>
+
+{% endblock %}

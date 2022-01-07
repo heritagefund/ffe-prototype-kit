@@ -1,0 +1,13 @@
+.nlhf-header-global {
+    background: $nlhf-colour--blue;
+    padding: 20px 0;
+    &__logo {
+      width: 150px;
+    }
+    &__title {
+        color: #fff;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}

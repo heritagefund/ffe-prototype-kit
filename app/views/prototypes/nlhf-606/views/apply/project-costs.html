@@ -1,0 +1,196 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Project costs
+{%- endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <span class="govuk-caption-xl">About your project</span>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">How much will your project cost?</h1>
+            <p class="govuk-body-l govuk-!-margin-bottom-9">Project costs help us understand how you plan to put your project into action.</p>
+        </div>
+    </div>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+
+            <form action="add-cost" method="post">
+                <div class="nlhf-add-item">
+                    <header class="nlhf-add-item__header">
+                        <h2 class="govuk-heading-l nlhf-add-item__header__title">Add a cost</h2>
+                    </header>
+                    <div class="nlhf-add-item__body">
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukSelect({
+                                id: "cost-type",
+                                name: "cost-type",
+                                classes: "govuk-!-width-full",
+                                label: {
+                                    text: "Type"
+                                },
+                                items: [
+                                    {
+                                        value: "Activities",
+                                        text: "Activities"
+                                    },
+                                    {
+                                        value: "Equipment and materials",
+                                        text: "Equipment and materials"
+                                    },
+                                    {
+                                        value: "People",
+                                        text: "People"
+                                    },
+                                    {
+                                        value: "Other",
+                                        text: "Other"
+                                    },
+                                    {
+                                        value: "Contingency",
+                                        text: "Contingency"
+                                    },
+                                    {
+                                        value: "Evaluation",
+                                        text: "Evaluation"
+                                    }
+                                ]
+                            }) }}                    
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukCharacterCount({
+                                name: "cost-description",
+                                id: "cost-description",
+                                maxwords: 50,
+                                label: {
+                                    text: "Description"
+                                }
+                            }) }} 
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukInput({
+                                label: {
+                                    text: "Amount"
+                                },
+                                hint: {
+                                    text: "This can be an estimate"
+                                },
+                                id: "cost-amount",
+                                name: "cost-amount",
+                                autocomplete: "off"
+                            }) }}
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukButton({
+                                text: "Add this cost",
+                                preventDoubleClick: true,
+                                classes: "govuk-button--secondary"
+                            }) }}
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.nlhf-add-item -->
+            </form>
+            <!-- /add-cost form -->
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% set helpHTML %}
+                <h2 class="govuk-heading-m">How to add costs</h2>
+                <p class="govuk-body">For each of your project costs:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Choose the type of cost</li>
+                    <li>Provide a description of the cost</li>
+                    <li>Give the cost amount (this can be an estimate)</li>
+                    <li>Click the 'add this cost' button</li>
+                </ul>
+                <p class="govuk-body govuk-!-font-weight-bold">Add a new cost for each project cost.</p>
+                <p class="govuk-body">For example - If you are doing 3 activities, add 3 separate activity cost types, each with their own description and amount. </p>
+            {% endset %}
+
+            <div class="nlhf-highlight-content nlhf-highlight-content--help">
+                {{ helpHTML | safe }}
+            </div>
+        
+            <section class="nlhf-summary">
+
+                <header class="nlhf-summary__header">
+                    <h2 class="govuk-heading-m">Your project costs</h2>
+                </header>
+
+                <div class="nlhf-summary__body">
+
+                    {% if data.project.costs.length > 0 %}
+
+                        {% for cost in data.project.costs %}
+
+                            <div class="nlhf-data-row">
+                                <div class="nlhf-data-row__group nlhf-data-row__group--a">
+                                    <div class="nlhf-data-row__primary">
+                                    <h2 class="govuk-heading-m nlhf-data-row__heading">{{ cost.type }}</h2>
+                                    </div>
+                                    <div class="nlhf-data-row__secondary">
+                                        <p class="govuk-body-s">{{ cost.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="nlhf-data-row__group nlhf-data-row__group--b">
+                                    <div class="nlhf-data-row__teritary">
+                                    <h2 class="govuk-heading-s nlhf-data-row__heading">&pound;{{ cost.amount }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.nlhf-cost-row -->
+
+                        {% endfor %}
+
+                    {% else %}
+                        <h3 class="govuk-heading-m">You have not added any costs yet</h3>
+                        <p class="govuk-body">Each cost will be shown here with a running total</p>
+                    {% endif %}
+
+                    <div class="nlhf-summary__total">
+                        <h3 class="nlhf-summary__total__title">
+                            <span class="nlhf-summary__total__title-text">Total costs </span>
+                            <span class="nlhf-summary__total__title-val">&pound;{{ data.project.totalCosts }}</span>
+                        </h3>
+                    </div>
+                </div>
+                <!-- /.nlhf-summary__body -->
+
+            </section>
+            <!-- /.nlhf-summary-container -->
+
+        </div>
+    </div>
+
+    <hr class="govuk-section-break--l govuk-section-break--visible">
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+        {% if data.project.costs.length > 0 %}
+
+            <form action="process-costs" method="post">
+
+            <p class="govuk-body">If you have finished adding all your costs</p>
+                {{ govukButton({
+                    text: "Save and continue",
+                    preventDoubleClick: true
+                }) }}
+            </div>
+
+            </form>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

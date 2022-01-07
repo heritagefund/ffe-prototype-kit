@@ -1,0 +1,147 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle -%}
+  {{ serviceName }}
+{%- endblock %}
+
+{% block header %}
+  <div class="homepage-top">
+    <div class="homepage-top-content">
+      <h1 class="govuk-heading-xl">
+        {{serviceName}}
+        <span>Prototypes</span>
+      </h1>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {# Start of most recent box #}
+      <div class="most-recent">
+
+        {# Start of prototype write up #}
+        <div class="prototype-write-up">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              <dl>
+                <dt class="govuk-heading-s">Date of release</dt>
+                <dd class="govuk-body">March 26th 2020</dd>
+              </dl>
+            </div>
+
+            <div class="govuk-grid-column-one-third">
+              <dl>
+                <dt class="govuk-heading-s">Related tickets</dt>
+                <dd class="govuk-body">
+                  <a href="https://trello.com/c/zMtlMO30">Ticket 1335</a>
+                </dd>
+              </dl>
+            </div>
+          </div>
+
+          <h3 class="govuk-heading-s">Notes</h3>
+          <p>Updated the prototype kit to the latest version from the Government Digital Service.</p>
+          <h3 class="govuk-heading-s">Research notes</h3>
+          <p>Not applicable</p>
+
+          {{ govukButton({
+            text: "View prototype",
+            href: "/template",
+            isStartButton: true
+          }) }}
+        </div>
+        {# End of prototype write up #}
+
+      </div>
+      {# End of most recent box #}
+
+      <h2 class="govuk-heading-l">All versions</h2>
+
+      {# Start of hidden panel #}
+      <details class="govuk-details all-versions">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Show all versions
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          {# Start of prototype write up #}
+          <div class="prototype-write-up">
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-third">
+                <dl>
+                  <dt class="govuk-heading-s">Date of release</dt>
+                  <dd class="govuk-body">Dec 5th 2019</dd>
+                </dl>
+              </div>
+
+              <div class="govuk-grid-column-one-third">
+                <dl>
+                  <dt class="govuk-heading-s">Related tickets</dt>
+                  <dd class="govuk-body">
+                    <a href="https://trello.com/c/5SuqLRYw">Ticket 826</a>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+
+            <h3 class="govuk-heading-s">Notes</h3>
+            <p>Second version of the National Lottery Heritage Fund application prototype.</p>
+            <p>Content and flow notes on this
+              <a href="https://miro.com/app/board/o9J_kwSTDQY=/">Miro board</a>
+            </p>
+
+            <h3 class="govuk-heading-s">Research notes</h3>
+            <p>TBC</p>
+
+            {{ govukButton({
+            text: "View prototype",
+            href: "/nlhf-826",
+            isStartButton: true
+          }) }}
+          </div>
+          {# End of prototype write up #}
+
+          {# Start of prototype write up #}
+          <div class="prototype-write-up">
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-third">
+                <dl>
+                  <dt class="govuk-heading-s">Date of release</dt>
+                  <dd class="govuk-body">Nov 12th 2019</dd>
+                </dl>
+              </div>
+
+              <div class="govuk-grid-column-one-third">
+                <dl>
+                  <dt class="govuk-heading-s">Related tickets</dt>
+                  <dd class="govuk-body">
+                    <a href="https://trello.com/c/3mEWheO7">Ticket 606</a>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+
+            <h3 class="govuk-heading-s">Changes</h3>
+            <p>First cut of a Heritage Fund version of the GOVUK Prototype Kit which we will use to help us with user research.</p>
+
+            {{ govukButton({
+              text: "View prototype",
+              href: "/nlhf-606",
+              isStartButton: true
+            }) }}
+          </div>
+          {# End of prototype write up #}
+
+        </div>
+      </details>
+      {# End of hidden panel #}
+
+    </div>
+  </div>
+
+{% endblock %}

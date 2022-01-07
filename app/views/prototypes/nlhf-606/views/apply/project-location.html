@@ -1,0 +1,58 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Where is the project taking place?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post" action="describe-your-idea">
+
+                <span class="govuk-caption-xl">About your project</span>
+
+                {% set noHTML %}
+                    {{ govukInput({
+                        id: "project-postcode",
+                        name: "project-postcode",
+                        label: {
+                            text: "Postcode of where the project is taking place"
+                        }
+                    }) }}
+                {% endset %}
+
+                {{ govukRadios({
+                idPrefix: "where-project-taking-place",
+                name: "where-project-taking-place",
+                fieldset: {
+                    legend: {
+                        text: "Is the project taking place at the same location as your organisation's address?",
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-5"
+                    }
+                },
+                items: [
+                    {
+                        value: "yes",
+                        text: "Yes"
+                    },
+                    {
+                        value: "no",
+                        text: "No",
+                        conditional: {
+                            html: noHTML
+                        }
+                    }
+                ]
+                }) }}
+                <!-- TODO: Option No should reveal address -->
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

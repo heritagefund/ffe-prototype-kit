@@ -1,0 +1,85 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+ What type of organisation
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post">
+
+                <span class="govuk-caption-xl govuk-!-margin-bottom-3">Check if you are eligible for funding</span>
+                
+                {{ govukRadios({
+                classes: "govuk-radios--small",
+                idPrefix: "organisation-type",
+                name: "organisation-type",
+                fieldset: {
+                    legend: {
+                        text: "What type of organisation will be running your project?",
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-5"
+                    }
+                },
+                items: [
+                    {
+                        value: "registered-charity",
+                        text: "Registered charity"
+                    },
+                    {
+                        value: "local-authority",
+                        text: "Local authority"
+                    },
+                    {
+                        value: "registered-company",
+                        text: "Registered company"
+                    },
+                    {
+                        value: "community-interest-company",
+                        text: "Community Interest Company"
+                    },
+                    {
+                        value: "faith-based-organisation",
+                        text: "Faith-based organisation"
+                    },
+                    {
+                        value: "church-organisation",
+                        text: "Church organisation"
+                    },
+                    {
+                        value: "community-group",
+                        text: "Community group"
+                    },
+                    {
+                        value: "voluntary-group",
+                        text: "Voluntary group"
+                    },
+                    {
+                        value: "private-owner",
+                        text: "Private owner of heritage"
+                    },
+                    {
+                        value: "other",
+                        text: "Other"
+                    },
+                    {
+                        divider: "or"
+                    },
+                    {
+                        value: "individual",
+                        text: "This project will be run by an individual"
+                    }
+                ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  You are eligible to apply
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            {{ govukPanel({
+                titleText: "You application<br>has been submitted!" | safe,
+                classes: "govuk-!-margin-bottom-6"
+            }) }}
+
+            <h2 class="govuk-heading-l">What happens next?</h2>
+
+            <ol class="govuk-list govuk-list--number">
+                <li class="govuk-!-margin-bottom-4">
+                    Your applicated will be allocated to an Investment Manager
+                    <br>(Awaiting allocation).
+                </li>
+                <li class="govuk-!-margin-bottom-4">
+                    The Investment Manager will assess the project
+                    <br>(Assessment).
+                </li>
+                <li class="govuk-!-margin-bottom-4">
+                    Your application will be considered in competition with other applications from your project's area/region. (Awaiting decision).
+                </li>
+                <li class="govuk-!-margin-bottom-4">
+                    You will know our decision within 8 weeks.
+                    (Decision confirmed).
+                </li>
+            </ol>
+
+            <p class="govuk-body-l">In the meantime why not <a href="http://www.heritagefund.org.uk">visit our website</a> for more information and news about our work.</p>
+
+        </div>
+    </div>
+{% endblock %}

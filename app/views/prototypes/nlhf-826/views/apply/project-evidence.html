@@ -1,0 +1,149 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Evidence of support
+{%- endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <span class="govuk-caption-xl">Support for your project</span>
+            <h1 class="govuk-heading-xl">Evidence of support</h1>
+        </div>
+    </div>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+
+            <form action="add-evidence" method="post">
+                <div class="nlhf-add-item">
+                    <header class="nlhf-add-item__header">
+                        <h2 class="govuk-heading-l nlhf-add-item__header__title">Add evidence</h2>
+                    </header>
+                    <div class="nlhf-add-item__body">
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukCharacterCount({
+                                name: "evidence-description",
+                                id: "evidence-description",
+                                maxwords: 50,
+                                label: {
+                                    text: "Describe the evidence you are providing"
+                                }
+                            }) }} 
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukFileUpload({
+                            id: "evidence-upload",
+                            name: "evidence-upload",
+                            classes: 'govuk-!-width-full',
+                            label: {
+                                text: "Upload a file"
+                            }
+                            }) }}
+                        </div>
+
+                        <div class="nlhf-add-item__row">
+                            {{ govukButton({
+                                text: "Add evidence",
+                                preventDoubleClick: true,
+                                classes: "govuk-button--secondary"
+                            }) }}
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.nlhf-add-item -->
+            </form>
+            <!-- /add-cost form -->
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% set helpHTML %}
+
+            <p class="govuk-body-l">
+                Send us evidence to support the commitments made to your project.
+            </p>
+            <p class="govuk-body">
+                Evidence for non-cash contributions could be letters, emails or videos showing support from the people involved in your project.
+            </p>
+            <p class="govuk-body">
+                Evidence for secured cash contributions could be a letter from the contributor, or a copy of bank statements to show the funds.
+            </p>
+
+            {% endset %}
+
+            <div class="nlhf-highlight-content nlhf-highlight-content--help">
+                {{ helpHTML | safe }}
+            </div>
+        
+            <section class="nlhf-summary nlhf-summary--evidence">
+
+                <header class="nlhf-summary__header">
+                    <h2 class="govuk-heading-m">Your evidence of support</h2>
+                </header>
+
+                <div class="nlhf-summary__body">
+
+                    {% if data.project.evidence.items.length > 0 %}
+
+                        {% for item in data.project.evidence.items %}
+
+                            <div class="nlhf-data-row nlhf-data-row--files">
+                                <div class="nlhf-data-row__group">
+                                    <div class="nlhf-data-row__primary">
+                                        <p class="govuk-body-s">{{ item.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="nlhf-data-row__group">
+                                    <div class="nlhf-data-row__secondary">
+                                        <p class="govuk-body-s">{{ item.upload }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.nlhf-cost-row -->
+
+                        {% endfor %}
+
+                    {% else %}
+                        <h3 class="govuk-heading-m govuk-!-margin-bottom-0">You have not added any evidence</h3>
+                    {% endif %}
+
+                </div>
+                <!-- /.nlhf-summary__body -->
+
+            </section>
+            <!-- /.nlhf-summary-container -->
+            
+        </div>
+    </div>
+
+    <hr class="govuk-section-break--l govuk-section-break--visible">
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="process-evidence" method="post">
+
+            <p class="govuk-body">If you have finished adding all your evidence</p>
+                {{ govukButton({
+                    text: "Save and continue",
+                    preventDoubleClick: true
+                }) }}
+            </div>
+
+            </form>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+

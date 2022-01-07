@@ -1,0 +1,248 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  How will your project involve a wider range of people?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            
+            <span class="govuk-caption-xl">About your project</span>
+             <form method="post" action="project-costs">
+
+              {% set outcome2HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome2][description]",
+                  value: data.outcomes.outcome2.description,
+                  id: "outcome2Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {% set outcome3HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome3][description]",
+                  value: data.outcomes.outcome3.description,
+                  id: "outcome3Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+              {% set outcome4HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome4][description]",
+                  value: data.outcomes.outcome4.description,
+                  id: "outcome4Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {% set outcome5HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome5][description]",
+                  value: data.outcomes.outcome5.description,
+                  id: "outcome5Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {% set outcome6HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome6][description]",
+                  value: data.outcomes.outcome6.description,
+                  id: "outcome6Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {% set outcome7HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome7][description]",
+                  value: data.outcomes.outcome7.description,
+                  id: "outcome7Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {% set outcome8HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome8][description]",
+                  value: data.outcomes.outcome8.description,
+                  id: "outcome8Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {% set outcome9HTML %}
+                {{ govukCharacterCount({
+                  name: "outcomes[outcome9][description]",
+                  value: data.outcomes.outcome9.description,
+                  id: "outcome9Description",
+                  maxwords: "300",
+                  label: {
+                    text: "How will you achieve this outcome?",
+                    classes: "govuk-!-font-size-18"
+                  }
+                }) }}
+              {% endset -%}
+
+              {{ govukCheckboxes({
+                idPrefix: "other_outcomes",
+                name: "outcomes[selected]",
+                fieldset: {
+                  legend: {
+                    text: "Will your project achieve any of our other outcomes?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--xl"
+                  }
+                },
+                hint: {
+                  text: "Check the outcomes you will achieve and describe how you will achieve them"
+                },
+                items: [
+                  {
+                    value: "outcome2",
+                    checked: checked("['outcomes']['selected']", "outcome2"),
+                    text: "Heritage will be in better condition",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome2HTML
+                    }
+                  },
+                  {
+                    value: "outcome3",
+                    checked: checked("['outcomes']['selected']", "outcome3"),
+                    text: "Heritage will be identified and better explained",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome3HTML
+                    }
+                  },
+                  {
+                    value: "outcome4",
+                    checked: checked("['outcomes']['selected']", "outcome4"),
+                    text: "People will have developed skills",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome4HTML
+                    }
+                  },
+                  {
+                    value: "outcome5",
+                    checked: checked("['outcomes']['selected']", "outcome5"),
+                    text: "People will have learned about heritage, leading to change in ideas and actions",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome5HTML
+                    }
+                  },
+                  {
+                    value: "outcome6",
+                    checked: checked("['outcomes']['selected']", "outcome6"),
+                    text: "People will have greater wellbeing",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome6HTML
+                    }
+                  },
+                  {
+                    value: "outcome7",
+                    checked: checked("['outcomes']['selected']", "outcome7"),
+                    text: "The funded organisation will be more resilient",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome7HTML
+                    }
+                  },
+                  {
+                    value: "outcome8",
+                    checked: checked("['outcomes']['selected']", "outcome8"),
+                    text: "The local area will be a better place to live, work or visit",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome8HTML
+                    }
+                  },
+                  {
+                    value: "outcome9",
+                    checked: checked("['outcomes']['selected']", "outcome9"),
+                    text: "The local economy will be boosted",
+                    label: {
+                      classes: "govuk-!-font-size-19"
+                    },
+                    conditional: {
+                      html: outcome9HTML
+                    }
+                  }
+                ]
+              }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+            {% set helpHTML %}
+              <h3 class="govuk-heading-m">What are we looking for?</h3>
+              <p class="govuk-body">Signs that you will be able to show that your audience or volunteer profile has changed between the start - and end - of the project.</p>
+              <p class="govuk-body">It might include, for example, a broader range of ages, ethnicities and social backgrounds, more disabled people, or groups who have never engaged with your heritage before.</p>
+              <p class="govuk-body">
+                <a href="" class="govuk-link" target="_blank">Read more about our mandatory outcome</a>
+                <br>
+                <span class="govuk-!-font-size-14">This link will open in a new window</span>
+              </p>
+            {% endset %}
+
+            {# {{ govukDetails({
+              summaryText: "Help answering this question",
+              html: helpHTML
+            }) }} #}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  The heritage of your project: how do you plan to make it available, once the project is over?
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            
+            <span class="govuk-caption-xl">About your project</span>
+             <form method="post" action="outcome-mandatory">
+
+                {% set makeHeritageHintHTML %}
+                  <p class="govuk-hint">This helps us to understand how you plan to preserve the heritage of your project and the difference it will make after the project ends.</p>
+                  <p class="govuk-hint">We use this section to assess the value for money of our investment in your project.</p>
+                {% endset %}
+
+                {{ govukCharacterCount({
+                  name: "make-heritage-available",
+                  id: "make-heritage-available",
+                  rows: "10",
+                  maxwords: "500",
+                  label: {
+                    text: "The heritage of your project: how do you plan to make it available once the project is over?",
+                    isPageHeading: true,
+                    classes: "govuk-label--xl"
+                  },
+                  hint: {
+                    html: makeHeritageHintHTML
+                  }
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

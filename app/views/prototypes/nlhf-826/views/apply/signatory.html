@@ -1,0 +1,52 @@
+{% extends "../layouts/layout_question.html" %}
+
+                  {% from "govuk/components/input/macro.njk" import govukInput %}
+{% block pageTitle -%}
+  Signatory
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+             <form method="post" action="create-account-complete">
+                
+                <h2 class="govuk-heading-xl govuk-!-margin-bottom-5">
+                  <span class="govuk-caption-l">Create an account</span>
+                  Who is your legal signatory?
+                </h2>
+
+                <p class="govuk-caption-m">A signatory is a person who is authorised to sign legal documents on behalf of your organisation. Please tell us the name of two legal, or authorised, signatories for your organisation.</p>
+
+                {{ govukInput({
+                  label: {
+                    text: "Full name"
+                  },
+                  id: "signatory-full-name",
+                  name: "signatory-full-name"
+                }) }}
+                
+                {{ govukInput({
+                  label: {
+                    text: "Email address"
+                  },
+                  id: "signatory-email-address",
+                  name: "signatory-email-address"
+                }) }}
+                {{ govukInput({
+                  label: {
+                    text: "Phone number"
+                  },
+                  id: "signatory-phone-number",
+                  name: "signatory-phone-number"
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

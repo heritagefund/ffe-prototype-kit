@@ -1,0 +1,35 @@
+{% extends "../layouts/layout_question.html" %}
+
+{% block pageTitle -%}
+  Project title
+{%- endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-xl">About your project</span>
+             <form method="post" action="project-location">
+
+                {{ govukInput({
+                  label: {
+                    text: "Project title",
+                    isPageHeading: true,
+                    classes: "govuk-label--xl"
+                  },
+                  hint: {
+                    text: "Give your project a title or name that we can refer to your project by"
+                  },
+                  id: "project-title",
+                  name: "project-title"
+                }) }}
+
+                {{ govukButton({
+                    text: "Save and continue"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
