@@ -1,0 +1,17 @@
+{% extends "./default.html" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+
+    <div class="nlhf-primary-column govuk-grid-column-two-thirds">
+      {% block content_primary %}{% endblock %}
+    </div>
+    <!-- / nlhf-primary-column -->
+
+    <div class="nlhf-secondary-column govuk-grid-column-one-third">
+      {% block content_secondary %}{% endblock %}
+    </div>
+    <!-- / nlhf-secondary-column -->
+
+</div>
+{% endblock %}

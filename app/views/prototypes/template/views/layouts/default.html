@@ -1,0 +1,51 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle -%}
+  {{ serviceName }}
+{%- endblock %}
+
+{% block beforeContent %}
+
+  {{ govukPhaseBanner({
+    "tag": { "text": "prototype" },
+    "html": cookieText
+  }) }}
+
+  {% if not isStart %}
+    {{ govukBackLink({
+      text: "Back",
+      href: basePath
+    }) }}
+  {% endif %}
+
+  {% if debugMode %}
+   {{ data | log }}
+  {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+  <footer class="govuk-footer nlhf-footer" role="contentinfo">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="#">Get support</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="#">Accessibility statement</a>
+            </li>
+          <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="#">Cookie settings</a>
+            </li>
+        </ul>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+        <div class="govuk-footer__meta-custom">
+          © Trustees of the National Heritage Memorial Fund
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
